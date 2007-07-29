@@ -80,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%{_bindir}/gssdp-device-sniffer
+%attr(755,root,root) %{_bindir}/gssdp-device-sniffer
 %attr(755,root,root)    %{_libdir}/libgssdp-1.0.so.0.0.0
 %dir %{_datadir}/gssdp
 %{_datadir}/gssdp/gssdp-device-sniffer.glade
