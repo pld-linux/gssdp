@@ -1,35 +1,46 @@
 Summary:	SSDP library
+Summary(pl.UTF-8):	Biblioteka SSDP
 Name:		gssdp
 Version:	0.4
 Release:	1
-License:	BSD
+License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.gupnp.org/sources/%{name}-%{version}.tar.gz
 # Source0-md5:	fe7d83ecb4f67ea1db87b1e1d48d7622
 URL:		http://gupnp.org/
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	gtk-doc
-BuildRequires:	libglade2-devel
-BuildRequires:	libsoup-devel
+BuildRequires:	glib2-devel >= 1:2.9.1
+BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	libglade2-devel >= 1:2.6.0
+BuildRequires:	libsoup-devel >= 2.2.97
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GSSDP implements resource discovery and announcement over SSDP.
 
+%description -l pl.UTF-8
+GSSDP implementuje wykrywanie i rozgłaszanie zasobów przy użyciu SSDP.
+
 %package devel
 Summary:	Header files for gssdp
-Summary(pl.UTF-8):	Pliki nagłówkowe gssdp
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gssdp
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.9.1
+Requires:	libsoup-devel >= 2.2.97
 
 %description devel
 This package contains header files for gssdp.
 
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagłówkowe biblioteki gssdp.
+
 %package static
 Summary:	Static gssdp libraries
-Summary(pl.UTF-8):	Statyczne biblioteki gssdp
+Summary(pl.UTF-8):	Statyczna biblioteka gssdp
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -37,7 +48,7 @@ Requires:	%{name}-devel = %{version}-%{release}
 Static gssdp libraries.
 
 %description static -l pl.UTF-8
-Statyczne biblioteki gssdp.
+Statyczna biblioteka gssdp.
 
 %package apidocs
 Summary:	gssdp API documentation
@@ -81,16 +92,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
-%attr(755,root,root)    %{_libdir}/libgssdp-1.0.so.0.0.0
+%attr(755,root,root) %{_libdir}/libgssdp-1.0.so.*.*.*
 %dir %{_datadir}/gssdp
 %{_datadir}/gssdp/gssdp-device-sniffer.glade
 
-
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/gssdp-1.0
+%attr(755,root,root) %{_libdir}/libgssdp-1.0.so
 %{_libdir}/libgssdp-1.0.la
-%{_libdir}/libgssdp-1.0.so
+%{_includedir}/gssdp-1.0
 %{_pkgconfigdir}/gssdp-1.0.pc
 
 %files static
