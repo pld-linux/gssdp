@@ -1,12 +1,12 @@
 Summary:	SSDP library
 Summary(pl.UTF-8):	Biblioteka SSDP
 Name:		gssdp
-Version:	0.6
-Release:	2
+Version:	0.6.2
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.gupnp.org/sources/gssdp/%{name}-%{version}.tar.gz
-# Source0-md5:	1ce68aeae1a6d6ef85b06700fef85d85
+# Source0-md5:	aac3f73343a82db7a9acd5233ab32719
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
 %attr(755,root,root) %{_libdir}/libgssdp-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgssdp-1.0.so.0
+%attr(755,root,root) %ghost %{_libdir}/libgssdp-1.0.so.1
 %dir %{_datadir}/gssdp
 %{_datadir}/gssdp/gssdp-device-sniffer.glade
 
