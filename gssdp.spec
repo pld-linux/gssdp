@@ -1,16 +1,16 @@
 Summary:	SSDP library
 Summary(pl.UTF-8):	Biblioteka SSDP
 Name:		gssdp
-Version:	0.6.2
+Version:	0.6.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.gupnp.org/sources/gssdp/%{name}-%{version}.tar.gz
-# Source0-md5:	aac3f73343a82db7a9acd5233ab32719
+# Source0-md5:	f212bbe3c539e95fab91d0dc825bd108
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	glib2-devel >= 1:2.9.1
+BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libsoup-devel >= 2.4.0
@@ -29,8 +29,8 @@ Summary:	Header files for gssdp
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gssdp
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.9.1
-Requires:	libsoup-devel >= 2.2.97
+Requires:	glib2-devel >= 1:2.18.0
+Requires:	libsoup-devel >= 2.4.0
 
 %description devel
 This package contains header files for gssdp.
@@ -73,7 +73,9 @@ Dokumentacja API gssdp.
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}
+
 %{__make}
 
 %install
