@@ -1,12 +1,12 @@
 Summary:	SSDP library
 Summary(pl.UTF-8):	Biblioteka SSDP
 Name:		gssdp
-Version:	0.7.0
+Version:	0.7.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.gupnp.org/sources/gssdp/%{name}-%{version}.tar.gz
-# Source0-md5:	dd21e0898adfe9277fd5cb2ec9a8fbd7
+# Source0-md5:	725c32e8f92a072cc34f0e091937df2a
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
