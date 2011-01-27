@@ -10,6 +10,7 @@ Source0:	http://www.gupnp.org/sites/all/files/sources/%{name}-%{version}.tar.gz
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gobject-introspection-devel >= 0.6.4
 BuildRequires:	gtk+2-devel >= 2:2.12.0
