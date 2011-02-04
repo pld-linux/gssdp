@@ -1,68 +1,75 @@
-Summary:	SSDP library
-Summary(pl.UTF-8):	Biblioteka SSDP
+Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
+Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
-Version:	0.8.0
+# note: 0.8.x is stable, 0.9.x unstable
+Version:	0.8.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://www.gupnp.org/sites/all/files/sources/%{name}-%{version}.tar.gz
-# Source0-md5:	a4cf85650decaec7a12382a8a002bc83
+#Source0Download: http://gupnp.org/download
+Source0:	http://gupnp.org/sites/all/files/sources/%{name}-%{version}.tar.gz
+# Source0-md5:	7a3d3f421986a52f3df641297d9598b1
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.18.0
+BuildRequires:	glib2-devel >= 1:2.18
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	gtk+2-devel >= 2:2.12
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libsoup-devel >= 2.4.0
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
+Requires:	glib2 >= 1:2.18
+Requires:	gtk+2 >= 2:2.12
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GSSDP implements resource discovery and announcement over SSDP.
+GSSDP is a GObject-based API that implements resource discovery and
+announcement over SSDP (Simple Service Discovery Protocol).
 
 %description -l pl.UTF-8
-GSSDP implementuje wykrywanie i rozgłaszanie zasobów przy użyciu SSDP.
+GSSDP to oparte na bibliotece GObject API implementujące wykrywanie i
+rozgłaszanie zasobów przy użyciu protokołu SSDP (Simple Service
+Discovery Protocol).
 
 %package devel
-Summary:	Header files for gssdp
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gssdp
+Summary:	Header files for GSSDP
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.18.0
+Requires:	glib2-devel >= 1:2.18
 Requires:	libsoup-devel >= 2.4.0
 
 %description devel
-This package contains header files for gssdp.
+This package contains header files for GSSDP library.
 
 %description devel -l pl.UTF-8
-Ten pakiet zawiera pliki nagłówkowe biblioteki gssdp.
+Ten pakiet zawiera pliki nagłówkowe biblioteki GSSDP.
 
 %package static
-Summary:	Static gssdp libraries
-Summary(pl.UTF-8):	Statyczna biblioteka gssdp
+Summary:	Static GSSDP library
+Summary(pl.UTF-8):	Statyczna biblioteka GSSDP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static gssdp libraries.
+Static GSSDP library.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka gssdp.
+Statyczna biblioteka GSSDP.
 
 %package apidocs
-Summary:	gssdp API documentation
-Summary(pl.UTF-8):	Dokumentacja API gssdp
+Summary:	GSSDP API documentation
+Summary(pl.UTF-8):	Dokumentacja API GSSDP
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
-gssdp API documentation.
+GSSDP API documentation.
 
 %description apidocs -l pl.UTF-8
-Dokumentacja API gssdp.
+Dokumentacja API GSSDP.
 
 %prep
 %setup -q
@@ -76,9 +83,9 @@ mkdir m4
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--disable-silent-rules
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
@@ -96,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
 %attr(755,root,root) %{_libdir}/libgssdp-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgssdp-1.0.so.2
