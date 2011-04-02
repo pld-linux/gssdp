@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na
 Name:		gssdp
 # note: 0.8.x is stable, 0.9.x unstable
 Version:	0.8.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: http://gupnp.org/download
@@ -95,6 +95,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -113,7 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgssdp-1.0.so
-%{_libdir}/libgssdp-1.0.la
 %{_datadir}/gir-1.0/GSSDP-1.0.gir
 %{_includedir}/gssdp-1.0
 %{_pkgconfigdir}/gssdp-1.0.pc
