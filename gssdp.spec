@@ -13,15 +13,16 @@ URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	glib2-devel >= 1:2.22
 BuildRequires:	gobject-introspection-devel >= 0.6.4
-BuildRequires:	gtk+2-devel >= 2:2.12
+BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.22.0
-Requires:	gtk+2 >= 2:2.12
+Requires:	glib2 >= 1:2.22
+Requires:	gtk+2 >= 2:2.12.0
+Requires:	libsoup >= 2.26.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,7 +39,7 @@ Summary:	Header files for GSSDP
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.0
+Requires:	glib2-devel >= 1:2.22
 Requires:	libsoup-devel >= 2.26.1
 
 %description devel
