@@ -10,7 +10,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/0.12/%{name}-%{version}.ta
 # Source0-md5:	b7942485e82a181eb4f08ef172576d80
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.22
 BuildRequires:	gobject-introspection-devel >= 0.6.7
