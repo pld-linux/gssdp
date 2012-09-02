@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	vala	# Vala bindings
+%bcond_with	vala	# Vala bindings
 #
 Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
@@ -24,7 +24,7 @@ BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
-%{?with_vala:BuildRequires:	vala >= 0.14}
+%{?with_vala:BuildRequires:	vala >= 0.17}
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.22
 Requires:	gtk+2 >= 2:2.12.0
