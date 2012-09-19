@@ -1,17 +1,17 @@
 #
 # Conditional build:
-%bcond_with	vala	# Vala bindings
+%bcond_without	vala	# Vala bindings
 #
 Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
 # note: 0.12.x is stable, 0.13.x unstable
-Version:	0.12.2
+Version:	0.12.2.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/0.12/%{name}-%{version}.tar.xz
-# Source0-md5:	7805d3062706bdba4f088ce7e96a9293
+# Source0-md5:	8ac3a544ef0dcf8caaf7c249d2a50dc2
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -24,7 +24,7 @@ BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
-%{?with_vala:BuildRequires:	vala >= 0.17}
+%{?with_vala:BuildRequires:	vala >= 2:0.14}
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.22
 Requires:	gtk+2 >= 2:2.12.0
@@ -83,7 +83,7 @@ Summary:	Vala binding for GSSDP library
 Summary(pl.UTF-8):	Wiązanie języka Vala do biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Requires:	vala >= 0.14
+Requires:	vala >= 2:0.14
 
 %description -n vala-gssdp
 Vala binding for GSSDP library.
@@ -94,12 +94,7 @@ Wiązanie języka Vala do biblioteki GSSDP.
 %prep
 %setup -q
 
-%if %{without vala}
-echo 'AC_DEFUN([VALA_PROG_VAPIGEN],[VAPIGEN=])' >> acinclude.m4
-%endif
-
 %build
-mkdir m4
 %{__gtkdocize}
 %{__libtoolize}
 %{__aclocal} -I m4
@@ -129,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
 %attr(755,root,root) %{_libdir}/libgssdp-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgssdp-1.0.so.3
