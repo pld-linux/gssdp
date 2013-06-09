@@ -6,28 +6,28 @@ Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
 # note: 0.14.x is stable, 0.15.x unstable
-Version:	0.14.2
+Version:	0.14.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/0.14/%{name}-%{version}.tar.xz
-# Source0-md5:	46bbfa2c8f5e035afde70899134e9e86
+# Source0-md5:	9133b4fbf29fe15426c6d3e70938eef3
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	glib2-devel >= 1:2.32
-BuildRequires:	gobject-introspection-devel >= 0.6.7
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	gobject-introspection-devel >= 1.36.0
+BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
-%{?with_vala:BuildRequires:	vala >= 2:0.14}
+%{?with_vala:BuildRequires:	vala >= 2:0.20}
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.32
-Requires:	gtk+2 >= 2:2.12.0
+Requires:	gtk+3 >= 3.0
 Requires:	libsoup >= 2.26.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -83,7 +83,7 @@ Summary:	Vala binding for GSSDP library
 Summary(pl.UTF-8):	Wiązanie języka Vala do biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Requires:	vala >= 2:0.14
+Requires:	vala >= 2:0.20
 
 %description -n vala-gssdp
 Vala binding for GSSDP library.
