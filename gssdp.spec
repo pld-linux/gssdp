@@ -6,12 +6,12 @@ Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
 # note: 0.14.x is stable, 0.15.x unstable
-Version:	0.14.5
+Version:	0.14.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/0.14/%{name}-%{version}.tar.xz
-# Source0-md5:	274f18eba13e96e793ea829c1b8d2a70
+# Source0-md5:	fd9994283770d18ca4f7b9028f12d6da
 URL:		http://gupnp.org/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
