@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na
 Name:		gssdp
 # note: 0.14.x is stable, 0.15.x unstable
 Version:	0.14.11
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/0.14/%{name}-%{version}.tar.xz
