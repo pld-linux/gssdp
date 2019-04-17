@@ -5,29 +5,27 @@
 Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
-# note: 1.0.x is stable, 1.1.x unstable
-Version:	1.0.2
+# note: 1.2.x is stable, 1.3.x unstable
+Version:	1.2.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/1.0/%{name}-%{version}.tar.xz
-# Source0-md5:	b30c9a406853c6a3a012d151d6e7ad2c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/1.2/%{name}-%{version}.tar.xz
+# Source0-md5:	4f440313d84c8b9bb1c34a0c58a16399
 URL:		http://gupnp.org/
-BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.32
+BuildRequires:	glib2-devel >= 1:2.44
 BuildRequires:	gobject-introspection-devel >= 1.36.0
-BuildRequires:	gtk+3-devel >= 3.0
+BuildRequires:	gtk+3-devel >= 3.12
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libsoup-devel >= 2.26.1
-BuildRequires:	libtool >= 2:2.2
+BuildRequires:	meson
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.20}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.32
-Requires:	gtk+3 >= 3.0
+Requires:	glib2 >= 1:2.44
 Requires:	libsoup >= 2.26.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,12 +38,25 @@ GSSDP to oparte na bibliotece GObject API implementujące wykrywanie i
 rozgłaszanie zasobów przy użyciu protokołu SSDP (Simple Service
 Discovery Protocol).
 
+%package sniffer
+Summary:	Graphical SSDP sniffer
+Summary(pl.UTF-8):	Graficzny sniffer SSDP
+Group:		X11/Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+Requires:	gtk+3 >= 3.12
+
+%description sniffer
+Graphical SSDP sniffer.
+
+%description sniffer -l pl.UTF-8
+Graficzny sniffer SSDP.
+
 %package devel
 Summary:	Header files for GSSDP
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.32
+Requires:	glib2-devel >= 1:2.44
 Requires:	libsoup-devel >= 2.26.1
 
 %description devel
@@ -101,26 +112,15 @@ Wiązanie języka Vala do biblioteki GSSDP.
 %setup -q
 
 %build
-%{__gtkdocize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-silent-rules \
-	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+%meson build \
+	-Dgtk_doc=true
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,22 +131,24 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README
+%attr(755,root,root) %{_libdir}/libgssdp-1.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgssdp-1.2.so.0
+%{_libdir}/girepository-1.0/GSSDP-1.2.typelib
+
+%files sniffer
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
-%attr(755,root,root) %{_libdir}/libgssdp-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgssdp-1.0.so.3
-%{_libdir}/girepository-1.0/GSSDP-1.0.typelib
-%{_datadir}/gssdp
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgssdp-1.0.so
-%{_datadir}/gir-1.0/GSSDP-1.0.gir
-%{_includedir}/gssdp-1.0
-%{_pkgconfigdir}/gssdp-1.0.pc
+%attr(755,root,root) %{_libdir}/libgssdp-1.2.so
+%{_datadir}/gir-1.0/GSSDP-1.2.gir
+%{_includedir}/gssdp-1.2
+%{_pkgconfigdir}/gssdp-1.2.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgssdp-1.0.a
+%{_libdir}/libgssdp-1.2.a
 
 %files apidocs
 %defattr(644,root,root,755)
@@ -155,6 +157,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with vala}
 %files -n vala-gssdp
 %defattr(644,root,root,755)
-%{_datadir}/vala/vapi/gssdp-1.0.deps
-%{_datadir}/vala/vapi/gssdp-1.0.vapi
+%{_datadir}/vala/vapi/gssdp-1.2.deps
+%{_datadir}/vala/vapi/gssdp-1.2.vapi
 %endif
