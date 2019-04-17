@@ -22,6 +22,7 @@ BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	meson
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.20}
 BuildRequires:	xz
