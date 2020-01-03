@@ -6,15 +6,15 @@ Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
 # note: 1.2.x is stable, 1.3.x unstable
-Version:	1.2.1
+Version:	1.2.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	f724886848587c313eccf3e24019bbf2
+# Source0-md5:	f00a470ebcba96f34def8f83ac5891ed
 URL:		http://gupnp.org/
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	glib2-devel >= 1:2.44
+BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gobject-introspection-devel >= 1.36.0
 BuildRequires:	gtk+3-devel >= 3.12
 BuildRequires:	gtk-doc >= 1.14
@@ -26,7 +26,7 @@ BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.20}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.44
+Requires:	glib2 >= 1:2.54
 Requires:	libsoup >= 2.26.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +57,7 @@ Summary:	Header files for GSSDP
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.44
+Requires:	glib2-devel >= 1:2.54
 Requires:	libsoup-devel >= 2.26.1
 
 %description devel
