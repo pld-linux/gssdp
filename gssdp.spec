@@ -83,9 +83,7 @@ Summary:	GSSDP API documentation
 Summary(pl.UTF-8):	Dokumentacja API GSSDP
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 GSSDP API documentation.
@@ -99,9 +97,7 @@ Summary(pl.UTF-8):	Wiązanie języka Vala do biblioteki GSSDP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.20
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n vala-gssdp
 Vala binding for GSSDP library.
