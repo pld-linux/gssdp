@@ -1,27 +1,29 @@
 #
 # Conditional build:
+%bcond_without	apidocs	# gi-docgen based API documentation
 %bcond_without	vala	# Vala bindings
 
 Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
-# note: 1.2.x is stable, 1.3.x unstable
-Version:	1.2.3
+# note: 1.4.x is stable, 1.5.x unstable
+Version:	1.4.0.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gssdp/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	ef3295a965c06ce0f683522391fbb910
+Source0:	https://download.gnome.org/sources/gssdp/1.4/%{name}-%{version}.tar.xz
+# Source0-md5:	aad066cf237f2f4de8ebf82de4142f27
 URL:		https://wiki.gnome.org/Projects/GUPnP
 BuildRequires:	docbook-dtd412-xml
+%{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gobject-introspection-devel >= 1.36.0
-BuildRequires:	gtk+3-devel >= 3.12
-BuildRequires:	gtk-doc >= 1.14
+BuildRequires:	gtk4-devel >= 4
 BuildRequires:	libsoup-devel >= 2.26.1
-BuildRequires:	meson
+BuildRequires:	meson >= 0.54.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.20}
@@ -44,7 +46,7 @@ Summary:	Graphical SSDP sniffer
 Summary(pl.UTF-8):	Graficzny sniffer SSDP
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk+3 >= 3.12
+Requires:	gtk4 >= 4
 
 %description sniffer
 Graphical SSDP sniffer.
@@ -110,7 +112,7 @@ Wiązanie języka Vala do biblioteki GSSDP.
 
 %build
 %meson build \
-	-Dgtk_doc=true
+	%{?with_apidocs:-Dgtk_doc=true}
 
 %ninja_build -C build
 
@@ -118,6 +120,12 @@ Wiązanie języka Vala do biblioteki GSSDP.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
+
+%if %{with apidocs}
+# FIXME: where to package gi-docgen generated docs?
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/gssdp-1.2/reference/* $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_libdir}/libgssdp-1.2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgssdp-1.2.so.0
 %{_libdir}/girepository-1.0/GSSDP-1.2.typelib
@@ -147,9 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libgssdp-1.2.a
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gssdp
+%{_gtkdocdir}/GSSDP
+%endif
 
 %if %{with vala}
 %files -n vala-gssdp
