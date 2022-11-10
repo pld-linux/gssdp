@@ -7,12 +7,12 @@ Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
 # note: 1.4.x is stable, 1.5.x unstable
-Version:	1.4.0.1
+Version:	1.4.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gssdp/1.4/%{name}-%{version}.tar.xz
-# Source0-md5:	aad066cf237f2f4de8ebf82de4142f27
+# Source0-md5:	468514c096b6768a040e382de51fe85d
 URL:		https://wiki.gnome.org/Projects/GUPnP
 BuildRequires:	docbook-dtd412-xml
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 # FIXME: where to package gi-docgen generated docs?
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_docdir}/gssdp-1.2/reference/* $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/gssdp-1.2 $RPM_BUILD_ROOT%{_gtkdocdir}
 %endif
 
 %clean
@@ -158,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/GSSDP
+%{_gtkdocdir}/gssdp-1.2
 %endif
 
 %if %{with vala}
