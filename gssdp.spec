@@ -2,11 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs	# gi-docgen based API documentation
 %bcond_without	vala	# Vala bindings
+%bcond_with	sniffer	# sniffer package (GUI)
 
 Summary:	GObject-based SSDP (Simple Service Discovery Protocol) library
 Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na GObject
 Name:		gssdp
-# note: 1.4.x is stable, 1.5.x unstable
+# note: 1.4.x is stable libsoup 2.x based version; for libsoup3 based 1.6+ see gssdp1.6.spec
 Version:	1.4.1
 Release:	1
 License:	LGPL v2+
@@ -18,7 +19,7 @@ BuildRequires:	docbook-dtd412-xml
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.54
 BuildRequires:	gobject-introspection-devel >= 1.36.0
-BuildRequires:	gtk4-devel >= 4
+%{?with_sniffer:BuildRequires:	gtk4-devel >= 4}
 BuildRequires:	libsoup-devel >= 2.26.1
 BuildRequires:	meson >= 0.54.0
 BuildRequires:	ninja >= 1.5
@@ -112,7 +113,8 @@ Wiązanie języka Vala do biblioteki GSSDP.
 
 %build
 %meson build \
-	%{?with_apidocs:-Dgtk_doc=true}
+	%{?with_apidocs:-Dgtk_doc=true} \
+	%{!?with_sniffer:-Dsniffer=false}
 
 %ninja_build -C build
 
@@ -140,9 +142,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgssdp-1.2.so.0
 %{_libdir}/girepository-1.0/GSSDP-1.2.typelib
 
+%if %{with sniffer}
 %files sniffer
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gssdp-device-sniffer
+%endif
 
 %files devel
 %defattr(644,root,root,755)
