@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Biblioteka SSDP (Simple Service Discovery Protocol) oparta na
 Name:		gssdp
 # note: 1.4.x is stable libsoup 2.x based version; for libsoup3 based 1.6+ see gssdp1.6.spec
 Version:	1.4.1
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/gssdp/1.4/%{name}-%{version}.tar.xz
